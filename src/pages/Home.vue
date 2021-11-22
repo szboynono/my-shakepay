@@ -29,11 +29,10 @@ const balance = computed(() => {
       } else if (item.direction === 'debit') {
         sum -= currAmount;
       }
-
     });
   }
 
-  return sum;
+  return sum.toFixed(0);
 })
 
 onMounted(() => {

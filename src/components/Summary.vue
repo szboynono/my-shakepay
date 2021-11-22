@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SummaryItemVue from './SummaryItem.vue';
 
-const props = defineProps<{
+defineProps<{
   items: any[]
 }>()
 </script>

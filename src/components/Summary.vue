@@ -2,14 +2,19 @@
 import SummaryItemVue from './SummaryItem.vue';
 
 defineProps<{
-  items: any[]
+  items: {
+    currency: string,
+    balance: number,
+    price: number,
+    amount: number
+  }[]
 }>()
 </script>
 
 <template>
   <ul>
     <li v-for="item in items">
-          <SummaryItemVue />
+          <SummaryItemVue :item="item" />
     </li>
   </ul>
 </template>

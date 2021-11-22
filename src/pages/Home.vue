@@ -6,6 +6,14 @@ import axios from 'axios';
 
 const transactionsData = ref();
 const rateData = ref();
+const summaryItemsData = computed(() => {
+  return [{
+    currency: 'btc',
+    balance: 0,
+    price: 123,
+    amount: 0.444
+  }]
+})
 
 const balance = computed(() => {
   let sum = 0;
@@ -43,14 +51,13 @@ onMounted(() => {
   axios.get('https://shakepay.github.io/programming-exercise/web/transaction_history.json').then(res => {
     transactionsData.value = res.data;
   });
-
 })
 
 </script>
 
 <template>
   <Header :balance="balance" />
-  <Summary :items="['a', 'b']" />
+  <Summary :items="summaryItemsData" />
 </template>
 
 <style>

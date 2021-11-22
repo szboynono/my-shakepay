@@ -1,4 +1,12 @@
 <script setup lang="ts">
+defineProps<{
+  item: {
+    currency: string,
+    balance: number,
+    price: number,
+    amount: number
+  }
+}>()
 </script>
 
 <template>
@@ -6,11 +14,11 @@
     <img src="../assets/icons/currency-cad.svg" alt="cad" />
     <div>
       <h3>Dollar</h3>
-      <div>$ 12000</div>
+      <div>$ {{item.price}}</div>
     </div>
     <div>
-      <div>0.4946</div>
-      <div>$ 6187.99</div>
+      <div>{{ item.amount }}</div>
+      <div>$ {{ item.balance }}</div>
     </div>
   </div>
 </template>

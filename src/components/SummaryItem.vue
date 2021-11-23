@@ -11,7 +11,8 @@ const props = defineProps<{
 }>()
 
 const iconPath = computed(() => {
-  return new URL(`../assets/icons/currency-${props.item.currency.toLowerCase()}.svg`, import.meta.url);
+  const url = new URL(`../assets/icons/currency-${props.item.currency.toLowerCase()}.svg`, import.meta.url);
+  return '' + url;
 })
 
 </script>

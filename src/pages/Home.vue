@@ -6,13 +6,37 @@ import axios from 'axios';
 
 const transactionsData = ref();
 const rateData = ref();
+
+
 const summaryItemsData = computed(() => {
-  return [{
-    currency: 'btc',
-    balance: 0,
-    price: 123,
-    amount: 0.444
-  }]
+  const items: any = [];
+
+  if (transactionsData.value && rateData.value) {
+    const currData = transactionsData.value.filter((data: any) => data.currency === 'BTC');
+    let currAmount = 0;
+    let balance = 0;
+    let price = 0;
+    const exchangeName = `BTC_CAD`;
+    const rateToCad = rateData.value[exchangeName];
+    price = rateToCad;
+    currData.forEach((data: any) => {
+      if (data.direction === 'credit') {
+        balance += data.amount * rateToCad;
+        currAmount += data.amount;
+      } else if (data.direction === 'debit') {
+        balance -= data.amount * rateToCad;
+        currAmount -= data.amount;
+      }
+    });
+
+    items.push({
+      currency: 'BTC',
+      balance: balance.toFixed(0),
+      price,
+      amount: currAmount.toFixed(0)
+    })
+  }
+  return items;
 })
 
 const balance = computed(() => {

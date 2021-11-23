@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{
+import { computed, ref } from 'vue';
+
+const props = defineProps<{
   item: {
     currency: string,
     balance: number,
@@ -7,11 +9,16 @@ defineProps<{
     amount: number
   }
 }>()
+
+const iconPath = computed(() => {
+  return new URL(`../assets/icons/currency-${props.item.currency.toLowerCase()}.svg`, import.meta.url);
+})
+
 </script>
 
 <template>
   <div class="flex flex-row justify-between">
-    <img src="../assets/icons/currency-cad.svg" alt="cad" />
+    <img :src="iconPath" alt="cad" />
     <div>
       <h3>Dollar</h3>
       <div>$ {{item.price}}</div>

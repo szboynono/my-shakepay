@@ -14,7 +14,9 @@ defineProps<{
 <template>
   <ul>
     <li v-for="item in items">
+        <router-link :to="'/details/' + item.currency">
           <SummaryItemVue :item="item" />
+        </router-link>
     </li>
   </ul>
 </template>

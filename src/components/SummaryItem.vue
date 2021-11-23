@@ -17,15 +17,15 @@ const iconPath = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-row justify-between">
+  <div class="my-3 flex flex-row justify-between">
     <img :src="iconPath" alt="cad" />
     <div>
-      <h3>Dollar</h3>
-      <div>$ {{item.price}}</div>
+      <h3>{{ item.currency }}</h3>
+      <div v-if="item.currency !== 'CAD'">$ {{item.price}}</div>
     </div>
     <div>
       <div>{{ item.amount }}</div>
-      <div>$ {{ item.balance }}</div>
+      <div v-if="item.currency !== 'CAD'">$ {{ item.balance }}</div>
     </div>
   </div>
 </template>
